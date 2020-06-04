@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -24,9 +25,20 @@ namespace Test_MSC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 NewForm = new Form1();
-            NewForm.Show();
-            this.Dispose(false);
+            SqlConnection con = new SqlConnection("Data Source=(localdb)'\'MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            con.Open();
+            MessageBox.Show("Connected");
+            con.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
