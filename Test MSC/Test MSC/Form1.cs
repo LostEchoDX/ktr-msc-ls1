@@ -25,10 +25,16 @@ namespace Test_MSC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection("Data Source=(localdb)'\'MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            SqlConnection con = new SqlConnection("Server=localhost;Database=BusinessCards;Trusted_Connection=True;");
             con.Open();
-            MessageBox.Show("Connected");
+            SqlCommand sc = new SqlCommand("insert into Profiles values('" + textBox1.Text + "','" + textBox2.Text + "','" + textBox3.Text + "','" + textBox4.Text + "','" + textBox5.Text + "','" + textBox6.Text + "');", con);
+            int o=sc.ExecuteNonQuery();
+            MessageBox.Show(o + " Record has been inserted");
             con.Close();
+            
+            this.Hide();
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -37,6 +43,11 @@ namespace Test_MSC
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
         {
 
         }

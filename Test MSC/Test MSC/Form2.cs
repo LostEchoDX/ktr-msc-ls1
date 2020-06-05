@@ -21,13 +21,28 @@ namespace Test_MSC
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string connetionString;
-            SqlConnection cnn;
-            connetionString = @"Data Source=WIN-50GP30FGO75;Initial Catalog=Demodb;User ID=Omar;Password=1234";
-            cnn = new SqlConnection(connetionString);
-            cnn.Open();
-            MessageBox.Show("Connection Open  !");
-            cnn.Close();
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Server=localhost;Database=BusinessCards;Trusted_Connection=True;");
+            con.Open();
+            SqlCommand command = new SqlCommand();
+            command.CommandText = "select * from Profiles where ID = '" + textBox1.Text + "' and Password = '" + textBox2.Text + "'";
+            command.Connection = con;
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                MessageBox.Show("Login Successful");
+                this.Hide();
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+            }
+            else
+                MessageBox.Show("Incorrect ID & Password");
+            con.Close();
         }
     }
 }
